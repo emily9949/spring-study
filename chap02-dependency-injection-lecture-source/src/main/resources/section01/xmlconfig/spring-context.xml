@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    빈 생성-->
+    <bean id="account" class="com.sumin.common.PersonalAccount">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="110-234-4567890"/>
+    </bean>
+
+<!--    1. 생성자 주입 -->
+    <bean id="member" class="com.sumin.common.MemberDTO">
+        <constructor-arg name="sequence" value="1"/>
+        <constructor-arg name="name" value="홍길동"/>
+        <constructor-arg name="email" value="hong@gmail.com"/>
+        <constructor-arg name="phone" value="010-1234-5678"/>
+<!--        의존관계에 있는 빈을 ref에 넣어줌. 다형성 적용 (DI) -->
+        <constructor-arg name="personalAccount" ref="account"/>
+    </bean>
+
+<!--    2. 세터 (setter) 주입 -->
+    <bean id="member" class="com.sumin.common.MemberDTO">
+        <property name="sequence" value="1"/>
+        <property name="name" value="홍길동"/>
+        <property name="phone" value="010-1234-5678"/>
+        <property name="email" value="hong@gmail.com"/>
+        <property name="personalAccount" ref="account"/>
+    </bean>
+</beans>
